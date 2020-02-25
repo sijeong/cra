@@ -39,8 +39,15 @@ export interface AddedTodoAction {
 export interface AddingTodoFailedAction {
     type: TodosActionTypes.ADDING_TODOS_FAILED
 }
-export type TodoAction = LoadTodosAction | LoadingTodosAction | LoadedTodosAction;
-
+export type TodosAction =
+    LoadTodosAction
+    | LoadingTodosAction
+    | LoadedTodosAction
+    | LoadingTodosFailedAction
+    | AddTodoAction
+    | AddingTodoAction
+    | AddedTodoAction
+    | AddingTodoFailedAction
 
 
 export enum TodosActionTypes {
@@ -67,4 +74,47 @@ export function loadingTodos(): LoadingTodosAction {
     }
 }
 
-// export function asdfasdfasdfskskfm awhgdsm zlqhemdlqslek
+export function loadedTodos(todos: TodoItem[]): LoadedTodosAction {
+    return {
+        type: TodosActionTypes.LOADED_TODOS,
+        payload: {
+            todos
+        }
+    }
+}
+
+export function loadingTodosFailed(): LoadingTodosFailedAction {
+    return {
+        type: TodosActionTypes.LOADING_TODOS_FAILED
+    }
+}
+
+export function addTodo(description: string): AddTodoAction {
+    return {
+        type: TodosActionTypes.ADD_TODO,
+        payload: {
+            description
+        }
+    }
+}
+
+export function addingTodo(): AddingTodoAction {
+    return {
+        type: TodosActionTypes.ADDING_TODO
+    }
+}
+
+export function addedTodo(todo: TodoItem): AddedTodoAction {
+    return {
+        type: TodosActionTypes.ADDED_TODOS,
+        payload: {
+            todo
+        }
+    }
+}
+
+export function addingTodoFailed(): AddingTodoFailedAction {
+    return {
+        type: TodosActionTypes.ADDING_TODOS_FAILED
+    }
+}
